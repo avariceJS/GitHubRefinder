@@ -1,6 +1,11 @@
-import { useQuery } from '@apollo/client'
+// Shared
+import { REPOSITORY_DETAILS } from '../shared/api/card.graphql'
+
+// Route
 import { useParams } from 'react-router-dom'
-import { REPOSITORY_DETAILS } from './model/queries'
+
+// Apollo
+import { useQuery } from '@apollo/client'
 
 interface Repository {
 	name: string
