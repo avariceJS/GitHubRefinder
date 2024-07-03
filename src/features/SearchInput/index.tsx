@@ -12,7 +12,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ query, handleSearch }) => {
 	return (
 		<input
 			type='text'
-			placeholder='Search'
+			placeholder='Type to search'
 			className=' text-start flex justify-center center bg-gray-700 text-white rounded-lg w-80 p-2 py-1 focus:outline-none focus:ring-2 focus:ring-gray-500'
 			value={query}
 			onChange={handleSearch}
