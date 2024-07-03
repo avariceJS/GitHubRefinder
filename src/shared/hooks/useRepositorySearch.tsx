@@ -1,5 +1,5 @@
 // Base
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 // Apollo
 import { useQuery } from '@apollo/client'
@@ -25,56 +25,57 @@ import useStore from '../store'
  *
  */
 const useRepositorySearch = () => {
-	const { query, page, setQuery, setPage } = useStore()
-	const { data, loading, error, fetchMore, variables } = useQuery(
-		SEARCH_REPOSITORIES,
-		{
-			variables: { query, first: 10, after: null },
-		}
-	)
+	const { query, setQuery } = useStore()
+	const [page, setPage] = useState(1)
+	const [repositories, setRepositories] = useState([])
+	const username = import.meta.env.VITE_GITHUB_USERNAME
+
+	const { data, loading, error } = useQuery(SEARCH_REPOSITORIES, {
+		variables: {
+			query: query === 'stars:>0' || query === '' ? `user:${username}` : query,
+			first: 100,
+			after: null,
+		},
+	})
 
 	useEffect(() => {
 		const savedQuery = localStorage.getItem('query')
-		const savedPage = localStorage.getItem('page')
 		if (savedQuery) setQuery(savedQuery)
-		if (savedPage) setPage(Number(savedPage))
 	}, [setQuery, setPage])
+
+	useEffect(() => {
+		if (data?.search.edges) {
+			setRepositories(data.search.edges)
+		}
+	}, [data])
 
 	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setQuery(e.target.value)
 		localStorage.setItem('query', e.target.value)
 	}
 
-	const handlePageChange = async (newPage: number) => {
-		const cursor = newPage > page ? data?.search.pageInfo.endCursor : null
-
-		await fetchMore({
-			variables: {
-				...variables,
-				after: cursor,
-			},
-			updateQuery: (prev, { fetchMoreResult }) => {
-				if (!fetchMoreResult) return prev
-				return fetchMoreResult
-			},
-		})
-
+	const handlePageChange = (newPage: number) => {
 		setPage(newPage)
 		localStorage.setItem('page', newPage.toString())
 	}
 
+	const itemsPerPage = 10
+	const totalPages = Math.ceil(repositories.length / itemsPerPage)
+	const paginatedRepositories = repositories.slice(
+		(page - 1) * itemsPerPage,
+		page * itemsPerPage
+	)
+
 	return {
 		query,
-		data,
+		repositories: paginatedRepositories,
 		loading,
 		error,
 		handleSearch,
 		handlePageChange,
 		setQuery,
 		page,
-		totalPages: data?.search.repositoryCount
-			? Math.ceil(data.search.repositoryCount / 10)
-			: 0,
+		totalPages,
 	}
 }
 
