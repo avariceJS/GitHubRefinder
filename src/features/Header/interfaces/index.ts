@@ -1,6 +1,7 @@
+// Base
 import { ChangeEvent } from 'react'
 
-export interface FullHeaderProps {
+export interface HeaderProps {
 	query: string
 	handleSearch: (e: ChangeEvent<HTMLInputElement>) => void
 }

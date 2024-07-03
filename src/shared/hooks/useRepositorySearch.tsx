@@ -70,6 +70,7 @@ const useRepositorySearch = () => {
 		error,
 		handleSearch,
 		handlePageChange,
+		setQuery,
 		page,
 		totalPages: data?.search.repositoryCount
 			? Math.ceil(data.search.repositoryCount / 10)

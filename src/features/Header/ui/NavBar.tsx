@@ -1,11 +1,23 @@
-import { SearchInput } from '../../SearchInput'
-import github from '@/public/github.png'
-import octocat from '@/public/octocat.png'
-import questionMark from '@/public/questionMark.png'
-import settings from '@/public/settings.png'
-import { FullHeaderProps } from '../interfaces'
+// Image
+import github from '@/public/image/github.png'
+import octocat from '@/public/image/octocat.png'
+import questionMark from '@/public/image/questionMark.png'
+import settings from '@/public/image/settings.png'
 
-export const NavBar = ({ query, handleSearch }: FullHeaderProps) => (
+// Features -> SearchInput
+import { SearchInput } from '../../SearchInput'
+
+// Interfaces
+import { HeaderProps } from '../interfaces'
+
+/**
+ * Navigation bar component for the application header.
+ *
+ * @param query - Current search query string.
+ * @param handleSearch - Function to handle search input changes.
+ * @returns A navigation bar with GitHub logo, search input, and settings icons.
+ */
+export const Navbar = ({ query, handleSearch }: HeaderProps) => (
 	<nav className='flex items-center bg-[#2c353c] p-2 space-x-4'>
 		<div className='flex items-center bg-white rounded-full p-[1px]'>
 			<img src={github} width={33} alt='github' />

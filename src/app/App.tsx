@@ -4,7 +4,7 @@ import { ApolloProvider } from '@apollo/client'
 // Route
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
-// shared -> config
+// Shared -> Config
 import client from '../shared/config/apolloClient'
 
 // Pages
