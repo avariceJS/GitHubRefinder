@@ -9,7 +9,7 @@ const httpLink = createHttpLink({
 
 // Context to include authorization token for Apollo Client
 const authLink = setContext((_, { headers }) => {
-	const token = 'MyToken' // GitHub-> Settings-> DeveloperSettings-> Tokens
+	const token = import.meta.env.VITE_GITHUB_TOKEN
 	return {
 		headers: {
 			...headers,

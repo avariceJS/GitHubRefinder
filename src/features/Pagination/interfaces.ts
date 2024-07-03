@@ -1,3 +1,4 @@
 export interface PaginationProps {
-	handlePageChange: (newPage: number) => void
+	handlePageChange: (page: number) => void
+	totalPages: number
 }

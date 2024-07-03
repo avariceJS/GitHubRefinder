@@ -2,7 +2,7 @@
 import { PaginationProps } from './interfaces'
 
 // Base
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 /**
  * Component for pagination buttons.
@@ -10,20 +10,28 @@ import { useState } from 'react'
  * @param handlePageChange - Function to handle page changes.
  * @returns A set of pagination buttons.
  */
-const Pagination: React.FC<PaginationProps> = ({ handlePageChange }) => {
-	const [activeIndex, setActiveIndex] = useState<number | null>(null)
+const Pagination: React.FC<PaginationProps> = ({
+	handlePageChange,
+	totalPages,
+}) => {
+	const [activeIndex, setActiveIndex] = useState<number>(0)
 
 	const handleClick = (index: number) => {
 		setActiveIndex(index)
 		handlePageChange(index + 1)
 	}
 
+	useEffect(() => {
+		setActiveIndex(0)
+		handlePageChange(1)
+	}, [])
+
 	return (
 		<div>
-			{[...Array(10)].map((_, index) => (
+			{[...Array(totalPages)].map((_, index) => (
 				<button
-					className={`border rounded-md m-1 py-[2.9px] w-8 hover:border-blue-600 hover:scale-110 ${
-						activeIndex === index ? 'border-blue-600' : 'border-cyan-200'
+					className={`text-yellow-50 rounded-md m-1 py-[2.9px] w-8 hover:bg-[#374151] hover:scale-110 ${
+						activeIndex === index ? '!bg-[#1F6FEB] ' : ''
 					}`}
 					key={index}
 					onClick={() => handleClick(index)}

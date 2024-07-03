@@ -17,12 +17,13 @@ const MainPage: React.FC = () => {
 
 	const {
 		query,
-		data,
+		repositories,
 		loading,
 		error,
 		handleSearch,
 		handlePageChange,
 		setQuery,
+		totalPages,
 	} = useRepositorySearch()
 
 	useEffect(() => {
@@ -58,12 +59,26 @@ const MainPage: React.FC = () => {
 				</aside>
 				<div className='flex flex-col flex-grow ml-64'>
 					<main className='flex-grow flex flex-col justify-center items-center'>
-						{loading && <p>Loading...</p>}
-						{error && <p>Error: {error.message}</p>}
-						{data?.search && <RepositoriesList data={data} />}
+						{loading ? (
+							<p>Loading...</p>
+						) : (
+							<>
+								{error && <p>Error: {error.message}</p>}
+								{repositories.length > 0 ? (
+									<RepositoriesList
+										data={{ search: { edges: repositories } }}
+									/>
+								) : (
+									<p>No repositories found.</p>
+								)}
+							</>
+						)}
 					</main>
 					<footer className='flex-grow flex flex-col justify-end items-center'>
-						<Pagination handlePageChange={handlePageChange} />
+						<Pagination
+							handlePageChange={handlePageChange}
+							totalPages={totalPages}
+						/>
 					</footer>
 				</div>
 			</div>
