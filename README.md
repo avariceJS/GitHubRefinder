@@ -1,30 +1,60 @@
-# React + TypeScript + Vite
+# GitHubRefinder 
+GitHubRefinder is a platform designed to help users easily find repositories on GitHub and provides users with convenient tools to filter and view information about found projects
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Preview](./src/public/image/githubrepo.jpg)
 
-Currently, two official plugins are available:
+## Navigation
+1. [Features](#features) ✨
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. [Stack](#stack) 🛠️
 
-## Expanding the ESLint configuration
+3. [Quick Start](#quick-start) 🚀
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
+- **Advanced Filtering Options:** Filter repositories by popularity, programming languages, and date added to find exactly what you're looking for.
+- **Repository Details Page:** Click on a repository to view detailed information about it, including description, stars, forks, and more.
+- **Direct GitHub Access:** Easily navigate to the repository's GitHub page to explore it further, contribute, or clone the project.
+- And many more, including code architecture and reusability.
 
-- Configure the top-level `parserOptions` property like this:
+## Stack 🛠️
+- React.js
+- TypeScript
+- Tailwind CSS
+- Node.js
+- GraphQL
+- Zustand
+- Vite
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Quick Start 🚀
+Follow these steps to set up the project locally on your machine.
+
+### Prerequisites
+
+Make sure you have the following installed on your machine:
+
+- [Git](https://git-scm.com/downloads)
+- [Node.js](https://nodejs.org/en)
+- [npm](https://www.npmjs.com/) (Node Package Manager)
+
+
+**Cloning the Repository**
+
+```sh
+git clone https://github.com/avariceJS/GitHubRefinder.git
+cd GitHubRefinder
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+**Installation**
+
+Install the project dependencies using npm:
+
+```
+npm install
+```
+
+**Running the Project**
+```
+npm run dev
+```
+
+Open http://localhost:5173 in your browser to view the project.
