@@ -2,10 +2,10 @@
 import github from '@/public/image/github.png'
 import octocat from '@/public/image/octocat.png'
 import questionMark from '@/public/image/questionMark.png'
-import settings from '@/public/image/settings.png'
 
-// Features -> SearchInput
-import { SearchInput } from '../../SearchInput'
+// Features
+import { SearchInput } from '@/features/SearchInput'
+import { ModeToggle } from '@/features/ThemeToggle'
 
 // Interfaces
 import { HeaderProps } from '../interfaces'
@@ -20,7 +20,9 @@ import { HeaderProps } from '../interfaces'
 export const Navbar = ({ query, handleSearch }: HeaderProps) => (
 	<nav className='flex items-center bg-[#2c353c] p-2 space-x-4'>
 		<div className='flex items-center bg-white rounded-full p-[1px]'>
-			<img src={github} width={33} alt='github' />
+			<a href='https://github.com/' target='_blank'>
+				<img src={github} width={35} alt='github' />
+			</a>
 		</div>
 		<div className='flex items-center bg-gray-700 rounded-lg px-3 py-1'>
 			<span className='flex items-center truncate'>
@@ -30,20 +32,23 @@ export const Navbar = ({ query, handleSearch }: HeaderProps) => (
 					src={questionMark}
 					width={17}
 					alt='question mark'
-					title='Ссылка на поиск кода на GitHub'
+					title='Link to find code on GitHub'
 				/>
 			</span>
 		</div>
 		<div className='flex items-center justify-between w-full'>
 			<SearchInput query={query} handleSearch={handleSearch} />
 			<div className='flex space-x-4 mr-5'>
-				<img src={settings} width={25} alt='settings' />
-				<img
-					className='bg-[#3e4851] rounded-full'
-					src={octocat}
-					width={25}
-					alt='octocat'
-				/>
+				<ModeToggle />
+				<a href='https://github.com/avariceJS/GitHubRefinder' target='_blank'>
+					<img
+						className='bg-[#3e4851] rounded-full'
+						src={octocat}
+						width={27}
+						alt='octocat'
+						title='source code'
+					/>
+				</a>
 			</div>
 		</div>
 	</nav>

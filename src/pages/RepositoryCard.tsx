@@ -1,31 +1,21 @@
-// Shared
-import { REPOSITORY_DETAILS } from '../shared/api/card.graphql'
-
 // Route
 import { useParams } from 'react-router-dom'
 
 // Apollo
 import { useQuery } from '@apollo/client'
 
-interface Repository {
-	name: string
-	stargazerCount: number
-	updatedAt: string
-	owner: {
-		login: string
-		avatarUrl: string
-	}
-	languages: {
-		edges: {
-			node: {
-				name: string
-			}
-		}[]
-	}
-	description: string
-}
+// Widgets
+import RepositoryDetails from '@/widgets/RepositoryDetails'
+import { Repository } from '@/widgets/RepositoryDetails/interface'
 
-const RepositoryCard = () => {
+// Shared
+import { REPOSITORY_DETAILS } from '@/shared/api/card.graphql'
+
+// Features
+import LoadingSpinner from '@/features/LoadingSpinner'
+import ErrorMessage from '@/features/ErrorMessage'
+
+const RepositoryCards = () => {
 	const { owner, name } = useParams<{ owner: string; name: string }>()
 	const { data, loading, error } = useQuery<{ repository: Repository }>(
 		REPOSITORY_DETAILS,
@@ -34,33 +24,17 @@ const RepositoryCard = () => {
 		}
 	)
 
-	if (loading) return <p>Loading...</p>
-	if (error) return <p>Error: {error.message}</p>
+	if (loading) return <LoadingSpinner />
+	if (error) return <ErrorMessage message={error.message} />
 
-	if (!data || !data.repository) return <p>No data found</p>
-
-	const { repository } = data
+	if (!data || !data.repository)
+		return <p className='text-center'>No data found</p>
 
 	return (
-		<div>
-			<h1>{repository.name}</h1>
-			<p>Stars: {repository.stargazerCount}</p>
-			<p>Last Commit: {new Date(repository.updatedAt).toLocaleDateString()}</p>
-			<img src={repository.owner.avatarUrl} alt={repository.owner.login} />
-			<p>
-				Owner:{' '}
-				<a href={`https://github.com/${repository.owner.login}`}>
-					{repository.owner.login}
-				</a>
-			</p>
-			<ul>
-				{repository.languages.edges.map(({ node }) => (
-					<li key={node.name}>{node.name}</li>
-				))}
-			</ul>
-			<p>{repository.description}</p>
+		<div className='flex flex-col items-center min-h-screen bg-[#1f282f] p-4 font-medium text-gray-300'>
+			<RepositoryDetails repository={data.repository} />
 		</div>
 	)
 }
 
-export default RepositoryCard
+export default RepositoryCards

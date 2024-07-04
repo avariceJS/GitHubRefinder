@@ -10,6 +10,7 @@ import { URLDisplay } from './ui/URLDisplay'
 // Interfaces
 import { HeaderProps } from './interfaces'
 
+
 /**
  * header component combining IconGroup, URLDisplay, TitleSection, and Navbar.
  *
