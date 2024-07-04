@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { languages } from './languages'
 
 // Features -> Button
-import CustomButton from '../../CustomButton'
+import CustomButton from '@/features/CustomButton'
 
 // Interface
 import { LanguageFilterProps } from '../interface'

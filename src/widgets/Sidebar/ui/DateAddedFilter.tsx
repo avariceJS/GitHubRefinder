@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 // Features -> Button
-import CustomButton from '../../CustomButton'
+import CustomButton from '@/features/CustomButton'
 
 // Interface
 import { DateAddedFilterProps } from '../interface'
