@@ -44,6 +44,10 @@ git clone https://github.com/avariceJS/GitHubRefinder.git
 cd GitHubRefinder
 ```
 
+**Specify the data in the ".env" file**
+
+![Preview](./src/public/image/env.jpg)
+
 **Installation**
 
 Install the project dependencies using npm:
