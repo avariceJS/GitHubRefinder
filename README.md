@@ -16,7 +16,7 @@ GitHubRefinder is a platform designed to help users easily find repositories on 
 - **Direct GitHub Access:** Easily navigate to the repository's GitHub page to explore it further, contribute, or clone the project.
 - And many more, including code architecture and reusability.
 
-## Stack 🛠️
+## Stack
 - React.js
 - TypeScript
 - Tailwind CSS
@@ -25,7 +25,7 @@ GitHubRefinder is a platform designed to help users easily find repositories on 
 - Zustand
 - Vite
 
-## Quick Start 🚀
+## Quick Start
 Follow these steps to set up the project locally on your machine.
 
 ### Prerequisites
